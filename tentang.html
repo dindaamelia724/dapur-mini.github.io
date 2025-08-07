@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dapur mini anak</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+   <div class="container">
+    <h2>Formulir Pendaftaran Dapur Mini Anak</h2>
+    <form id="formDaftar">
+      <label for="nama">Nama Anak:</label>
+      <input type="text" id="nama" name="nama" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="umur">Umur Anak:</label>
+      <input type="number" id="umur" name="umur" required>
+
+      <button type="submit">Daftar Sekarang</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('formDaftar').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const nama = document.getElementById('nama').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const umur = parseInt(document.getElementById('umur').value);
+
+      // Validasi nama tidak boleh mengandung angka
+      if (/\d/.test(nama)) {
+        alert("❌ Nama tidak boleh mengandung angka!");
+        return;
+      }
+
+      // Validasi format email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("❌ Format email tidak valid!");
+        return;
+      }
+
+      // Validasi umur minimal 4 tahun
+      if (isNaN(umur) || umur < 4) {
+        alert("❌ Umur harus angka dan minimal 4 tahun!");
+        return;
+      }
+
+      // Jika semua valid
+      alert("✅ Pendaftaran berhasil! Terima kasih sudah bergabung di Dapur Mini Anak!");
+      document.getElementById('formDaftar').reset();
+       window.location.href = "index.html"; 
+    });
+  </script>
